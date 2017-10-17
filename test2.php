@@ -67,13 +67,56 @@
 	echo "<br>";
 	$a = 1;
 	// xdebug_debug_zval('a');
-	echo $a + ++$a; 
+	// print($a++);
+	echo  $a + $a++;
 	// xdebug_debug_zval('a');
-	// echo "$a";
 
-/*	$x = 3;
-	xdebug_debug_zval('x');
+	$x = 3;
+	// xdebug_debug_zval('x');
 
 	$x = $x +5;
-	xdebug_debug_zval('x');*/
+	// xdebug_debug_zval('x');
+
+	echo "\n";
+
+	$a = 2;
+	// $b = &$a;
+
+	echo ++$a + $a++; // 3 + 3 =6
+	echo "\n";
+	echo ++$a + $a*=2; //  5 + 5*2 = 15  a => 10
+	echo "\n";
+
+	echo --$a + $a--; //  9 + 9 = 18   a = 9;
+	echo "\n";
+
+	echo --$a - $a--; // (8-1)  - 7 = 0  a= 7;
+	echo "\n";
+
+	echo ++$a + $a--; // (7-1+1) +7 = 14; 
+	echo "\n";
+
+	echo $a++ + $a--; //(7-1) + (6+1) = 6 +7 = 13  
+	echo "\n";
+
+	echo --$a + --$a; //(7-1 -1)=5 + (5-1) = 4 +5 = 9  
+	echo "\n";
+
+	$a = 1;
+	$c = $a + ($a++);  // $a++ 相当于是复制了一个a 然后对a进行了操作 所以 2 + 1 = 3
+	var_dump($c);//3  ==》 2 + 1 = 3
+	
+	$a = 1;
+	$c = (++$a)+$a;  // 2 + 2 = 4
+	var_dump($c);//4
+	
+	$a = 1;
+	$c = (++$a)+($a++); // 2 + 2 = 4
+	var_dump($c);//4
+	
+	$a = 1; 
+	$b = &$a;
+	$c = (++$a)+($a++); // 2 + 2 = 4  // php 7.0
+	$c = (++$a)+($a++); // 2 + 2 = 4
+	var_dump($c);  // 4
 ?>
