@@ -6,4 +6,15 @@
  $a2 = $a1;
  $a2[0] = 10;
  print_r($a1);
+
+
+ // 在使引用的时候，要及时对foreach出来的变量进行unset 取消引用 不然会出现问题
+ $arr = ['hello','world','nice','work'];
+ foreach ($arr as &$value) {
+ 	echo $value."\n";
+ }
+ echo $value;
+ echo "\n";
+ $value = 'haha';
+ print_r($arr);
 ?>
