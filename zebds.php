@@ -13,4 +13,13 @@
 	preg_match($pattern, $phone,$match);
 
 	var_dump($match);
+
+	
+	// 正则表达式匹配图片的src资源   .*? 不让其贪婪
+	$pic = '<img alt="高清无码" id="av"  src="av.jpg"/>';
+	$pattern = '/<img(.*?)src="(.*?)"(.*?)\/?>/i';  // i 不区分大小写
+	preg_match($pattern, $pic,$match);
+	var_dump($match);
+	$src  = $match[2];
+	echo $src;
 ?>
