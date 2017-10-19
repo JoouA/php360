@@ -22,4 +22,8 @@
 	var_dump($match);
 	$src  = $match[2];
 	echo $src;
+
+	// 计算磁盘还有多少的剩余量
+	$size = disk_free_space('D:');
+	echo $size/(1024*1024*1024);
 ?>
