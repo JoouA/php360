@@ -1,0 +1,22 @@
+<html>
+<head>
+	<meta content="text/html" charset="utf-8">
+	<title>Data</title>
+	<script src="https://cdn.bootcss.com/jquery/1.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			setInterval(function(){
+				$.get("write.php",function(data,status){
+					$("#data").html(data);
+				});
+			}, 1000);
+		});
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h1>获取账号信息</h1>
+		<p id="data"></p>
+	</div>
+</body>
+</html>
