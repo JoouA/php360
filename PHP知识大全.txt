@@ -29,7 +29,7 @@
  
 7. 如果定义了一个变量$a,但是没有赋初始值      
        那么$a==0吗？    $a==false吗？    $a==''吗？
-       $a==NULL吗？   $a===NULL吗？     答：echo=>什么都没有 ,var_dump=>NULL  $a==BULL是true
+       $a==NULL吗？   $a===NULL吗？     答：echo=>什么都没有 ,var_dump=>NULL  $a==NULL是true
        empty($b)==true吗？————————————echo=>1 , var_dump=>bool(true)
        此时如果输出$a++是多少？———————   echo=>什么都没有 ,var_dump=>NULL
        如果输出++$a又是多少？—————————      echo=>1  , var_dump=>int(1)
@@ -113,7 +113,8 @@
 26.include()和require()函数的用法和区别是什么？include_once()和require_once()呢？
        include和require出现错误后的错误级别不一样
        include_once()和require_once()在加载之前要判断是否已经导入
- 
+       当require一个文件的时候，出错程序就会结束 而include不会只会有警告
+
 27. 说出前置++和后置++的区别？
        前置++是先将变量增加1，然后在将值赋值给原来的变量；
        后置++是先返回变量的当前值，然后再将变量的当前值增加1.
@@ -166,6 +167,7 @@
 34. 如何计算数组长度（或者说计算数组中所有元素的个数）？字符串怎么取长度？
        count() -- 计算数组中的元素个数。
        可以使用count(数组名)或者count(数组名,1),如果有第二个参数，并且是数字1，则表示递归统计数组元素的个数。如果第二个参数是数字0，则等同于只有一个参数的count()函数。
+       当使用count()第二个参数为1的时候，如果数组中的元素有数组，就会遍历出数组中元素个数
        sizeof() -- count() 的别名（count—计算数组中的单元数目或对象中的属性个数）
 字符串：strlen()—获取字符串长度
         mb_strlen()— Get string length
@@ -214,16 +216,17 @@
        (3)print_r($a)
        (4)var_dump($a); 能输出类型、长度、值
        B. 去除字符串首尾空格的函数： trim ltrim  rtrim（别名：chop）   使用第二个参数，还可以去除指定的字符。
-       C. 转义字符串函数：addslashes()
+       C. 转义字符串函数：addslashes()  // 对插入到数据库的字段要进行转义
        D. 获取字符串长度的函数：strlen()
        E. 截取字符串长度的的函数：substr()
-       F. 检索字符串函数： strstr() , strpos()
+       F. 检索字符串函数： strstr() , strpos() 
        G. 替换字符串函数：str_replace()
+       H. strrchr(haystack, needle)输出字符串中最后出现的字符 $str="tangwtna@163.com"; echo strrchr($str,'@'); // @163.com
  
 40. 请给出以下问题的正确答案？
-       1).$arr = array('james', 'tom','symfony');请将$arr数组的值用’,’分割并合并成字符串输出？          echoimplode(‘,’,$arr);
-       2).$str = ‘jack,james,tom,symfony’; 请将$str用’,’分割，并把分割后的值放到$arr数组中？           $arr = explode(‘,’,$str);
-       3).$arr = array(3,7,2,1,’d’,’abc’);   请将$arr按照从大到小的顺序排序，并保持其键值不变？           arsort($arr);print_r($arr);
+       1).$arr = array('james', 'tom','symfony');请将$arr数组的值用’,’分割并合并成字符串输出？     echo implode(‘,’,$arr);
+       2).$str = ‘jack,james,tom,symfony’; 请将$str用’,’分割，并把分割后的值放到$arr数组中？       $arr = explode(‘,’,$str);
+       3).$arr = array(3,7,2,1,’d’,’abc’);   请将$arr按照从大到小的顺序排序，并保持其键值不变？    arsort($arr);print_r($arr); rsort($arr);
        4).$mail = “gaofei@163.com”;    请将此邮箱的域(163.com)取出来并打印，看最多能写出几种方法？
               echo strstr($mail,'163');
               echo substr($mail,7);
@@ -276,10 +279,13 @@
  
 44.preg_replace()和 str_ireplace()两个函数在使用上有什么不同？preg_split()和split()函数如何使用？
   preg_replace —执行正则表达式的搜索和替换
-  str_ireplace — str_replace() 的忽略大小写版本   str_replace —子字符串替换
-           preg_split—用正则表达式分割字符串
-       split —用正则表达式将字符串分割到数组中
- 
+  str_ireplace — str_ireplace() 的忽略大小写版本   str_replace —子字符串替换
+  preg_split—用正则表达式分割字符串
+  split —用正则表达式将字符串分割到数组中
+  $a =1;
+  str_repeat($a, 12);  // 11111111111
+  str_replace(search, replace, subject)  // 字符串替换
+
 45. 获取当前时间戳的函数主要有哪些？用PHP打印出今天的时间，格式是2010-12-10 22:21:21？
        用PHP打印出前一天的时间格式是2010-12-10 22:21:21？如何把2010-12-2510:30:25变成unix时间戳？
        echo date ("Y-m-d H:i:s",strtotime(‘-1,days’));    
@@ -291,6 +297,10 @@
        用户在网站表单提交数据的时候，为了防止脚本攻击（比如用户输入<script>alert（111）；</script>），php端接收数据的时候，应该如何处理？
        使用urlencode()对中文进行编码，使用urldecode()来解码。   
        使用htmlspecialchars($_POST[‘title’])来过滤表单传参就可以避免脚本攻击。
+       echo $ch=urlencode('唐志凯'); // %E5%94%90%E5%BF%97%E5%87%AF
+       echo "\n";
+       echo urlencode('machengcheng');//machengcheng
+       echo "\n".urldecode($ch);//唐志凯
  
 48. 说说mysql_fetch_row()和mysql_fetch_assoc()和mysql_fetch_array之间有什么区别？
        第一个是返回结果集中的一行作为索引数组，第二个是返回关联数组，而第三个既可以返回索引数组也可以返回关联数组，取决于它的第二个参数 MYSQL_BOTH MYSQL_NUM  MYSQL_ASSOC 默认为MYSQL_BOTH
