@@ -1,4 +1,6 @@
 <?php
+	// session_start();
+	echo session_id();
 	/*$a;
 	var_dump($a==0);
 	var_dump($a==false);
@@ -19,5 +21,7 @@
 
 	echo "+++++++++++++++++++++++\n";
 	echo '1cx' + '2dsds';
+
+
 
  ?>
