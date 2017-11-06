@@ -61,6 +61,4 @@ print_r($newImages);
 foreach ($newImages as  $url) {
 	$sprite->downImages($url);
 }
-
-
 ?>
